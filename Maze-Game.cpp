@@ -17,11 +17,21 @@ public:
 };
 
 class Maze {
+private:
+	uint8_t size;
 
+	std::vector<std::vector<Cell>> maze;
+
+public:
+	Maze(uint8_t s) : size(s) {}
+
+	uint8_t getSize() const { return size; }
 };
 
 int main(void) {
 	Cell c = Cell(1, 1); // Initialize the Cell object
 	std::cout << (int)c.getX() << " " << (int)c.getY();
+	Maze m = Maze(9);
+	std::cout << (int)m.getSize();
 	return 0;
 }
