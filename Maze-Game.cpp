@@ -6,28 +6,28 @@ class Cell {
 private:
 	uint8_t xCoord; //cordinate x of the cell using 1 byte
 	uint8_t yCoord; //coordinate y of the cell using 1 byte
-	bool isVisited : 1; //1 bit for visited flag
-	bool isWalkable : 1; //1 bit for walkable flag
+	bool visited : 1; //1 bit for visited flag
+	bool walkable : 1; //1 bit for walkable flag
 
 public:
 	//constructor to initialize the cell
-	Cell(uint8_t x, uint8_t y) : xCoord(x), yCoord(y), isVisited(false), isWalkable(false) {}
+	Cell(uint8_t x, uint8_t y) : xCoord(x), yCoord(y), visited(false), walkable(false) {}
 	
 	//getters for x and y coordinates
 	uint8_t getX() const { return xCoord; }
 	uint8_t getY() const { return yCoord; }
 
 	//function to check if the cell has been visited
-	bool isVisited() const { return isVisited; }
+	bool isVisited() const { return visited; }
 
 	//function to check if the cell is walkable(a.k.a not a wall)
 	bool isWalkable() const { return isWalkable; }
 
 	//setter for isWalkable flag
-	void setWalkable(bool walk) { isWalkable = walk; }
+	void setWalkable(bool walk) { walkable = walk; }
 
 	//setter for isVisited flag
-	void setVisited(bool visit) { isVisited = visit; }
+	void setVisited(bool visit) { visited = visit; }
 
 };
 
@@ -44,6 +44,14 @@ public:
 			std::vector<Cell> row;
 			for (uint8_t j = 0; j < size; j++) { row.push_back(Cell(i, j)); }
 			maze.push_back(row);
+		}
+	}
+
+	void display() {
+		for (uint8_t i = 0; i < size; i++) {
+			for (uint8_t j = 0; j < size; j++) {
+				std::cout << (maze[i][j].isWalkable() ? " " : "#");
+			}
 		}
 	}
 
