@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdint>
+#include <vector>
 
 class Cell {
 private:
@@ -8,16 +9,19 @@ private:
 	uint8_t yCoord;
 
 public:
-	void setCoords(uint8_t x, uint8_t y) { xCoord = x; yCoord = y; }
+	Cell(uint8_t x, uint8_t y) : xCoord(x), yCoord(y) {}
 
 	uint8_t getX() const { return xCoord; }
 
 	uint8_t getY() const { return yCoord; }
 };
 
+class Maze {
+
+};
+
 int main(void) {
-	Cell c = Cell(); // Initialize the Cell object
-	c.setCoords(1, 1);
-	std::cout << (int)c.getX();
+	Cell c = Cell(1, 1); // Initialize the Cell object
+	std::cout << (int)c.getX() << " " << (int)c.getY();
 	return 0;
 }
