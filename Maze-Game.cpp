@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdint>
 #include <vector>
+#include <stack>
 
 class Cell {
 private:
@@ -47,11 +48,33 @@ public:
 		}
 	}
 
+	void generateMaze(uint8_t startX, uint8_t startY) {
+		//initialize all cells first as walls
+		for (uint8_t i = 0; i < size; i++) {
+			for (uint8_t j = 0; j < size; j++) {
+				maze[i][j].setWalkable(false);
+			}
+		}
+
+		//stack for holding cells
+		std::stack<Cell*> stack;
+
+		//initialize starting cell for generation
+		Cell& start = maze[startX][startY];
+		start.setWalkable(true);
+		start.setVisited(true);
+		stack.push(&start);
+
+
+	}
+
+	//display function that does what it says
 	void display() {
 		for (uint8_t i = 0; i < size; i++) {
 			for (uint8_t j = 0; j < size; j++) {
 				std::cout << (maze[i][j].isWalkable() ? " " : "#");
 			}
+			std::cout << std::endl;
 		}
 	}
 
