@@ -24,14 +24,10 @@ public:
 	bool isWalkable() const { return isWalkable; }
 
 	//setter for isWalkable flag
-	void setWalkable(bool walk) {
-		isWalkable = walk;
-	}
+	void setWalkable(bool walk) { isWalkable = walk; }
 
 	//setter for isVisited flag
-	void setVisited(bool visit) {
-		isVisited = visit;
-	}
+	void setVisited(bool visit) { isVisited = visit; }
 
 };
 
@@ -42,7 +38,14 @@ private:
 
 public:
 	//constructor to initialize the maze
-	Maze(uint8_t s) : size(s) {}
+	Maze(uint8_t s) : size(s) {
+		//initialize the maze with cells
+		for (uint8_t i = 0; i < size; i++) {
+			std::vector<Cell> row;
+			for (uint8_t j = 0; j < size; j++) { row.push_back(Cell(i, j)); }
+			maze.push_back(row);
+		}
+	}
 
 	//getter for the size of the maze
 	uint8_t getSize() const { return size; }
