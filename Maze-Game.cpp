@@ -8,12 +8,20 @@ private:
 
 	uint8_t yCoord;
 
+	bool isVisited;
+
+	bool isWalkable;
+
 public:
-	Cell(uint8_t x, uint8_t y) : xCoord(x), yCoord(y) {}
+	Cell(uint8_t x, uint8_t y) : xCoord(x), yCoord(y), isVisited(false), isWalkable(false) {}
 
 	uint8_t getX() const { return xCoord; }
 
 	uint8_t getY() const { return yCoord; }
+
+	bool isVisited() const { return isVisited; }
+
+	bool isWalkable() const { return isWalkable; }
 };
 
 class Maze {
