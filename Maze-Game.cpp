@@ -22,12 +22,22 @@ public:
 
 	//function to check if the cell is walkable(a.k.a not a wall)
 	bool isWalkable() const { return isWalkable; }
+
+	//setter for isWalkable flag
+	void setWalkable(bool walk) {
+		isWalkable = walk;
+	}
+
+	//setter for isVisited flag
+	void setVisited(bool visit) {
+		isVisited = visit;
+	}
+
 };
 
 class Maze {
 private:
 	uint8_t size; //size of the maze using 1 bit
-
 	std::vector<std::vector<Cell>> maze; //2D grid of cell objects
 
 public:
