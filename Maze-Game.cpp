@@ -44,7 +44,7 @@ public:
 		//initialize the maze with cells
 		for (uint8_t i = 0; i < size; i++) {
 			std::vector<Cell> row;
-			for (uint8_t j = 0; j < size; j++) { row.push_back(Cell(i, j)); }
+			for (uint8_t j = 0; j < size; j++) { row.push_back(Cell(j, i)); }
 			maze.push_back(row);
 		}
 	}
@@ -131,7 +131,7 @@ public:
 
 int main(void) {
 	Maze m = Maze(10);
-	m.generateMaze(2, 2);
+	m.generateMaze(3, 2);
 	m.display();
 	return 0;
 }
