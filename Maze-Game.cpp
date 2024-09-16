@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <vector>
 #include <stack>
+#include <ctime>
 
 class Cell {
 private:
@@ -98,7 +99,15 @@ public:
 
 			//if there are uninvisited neighbors
 			if (!neighbors.empty()) {
+				//random unvisited neighbor
+				Cell* neighbor = neighbors[rand() % neighbors.size()];
 
+				removeWall(*current, *neighbor);
+
+				neighbor->setVisited(true);
+				neighbor->setWalkable(true);
+
+				stack.push(neighbor);
 			}
 			else {//if there are no unvisited neighbors, go back
 				stack.pop();
