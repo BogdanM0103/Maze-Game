@@ -90,13 +90,53 @@ public:
 				stack.pop();
 			}
 		}
+
+		//unvisiting the cells to prepare for solving
+		for (uint8_t i = 0; i < size; i++) {
+			for (uint8_t j = 0; j < size; j++) {
+				if (maze[j][i].isWalkable()) {
+					maze[j][i].setVisited(false);
+				}
+			}
+		}
+	}
+
+	bool isValidMove(uint8_t x, uint8_t y) {
+		return (x < size && y < size && maze[y][x].isWalkable() && !maze[y][x].isVisited());
+	}
+
+	bool solveMaze(uint8_t currentX, uint8_t currentY, uint8_t endX, uint8_t endY) {
+		//if we reached destination cell
+		if (currentX == endX && currentY == endY) {
+			maze[currentY][currentX].setVisited(true);
+			return true;
+		}
+
+		//set current cell as visited
+		maze[currentY][currentX].setVisited(true);
+
+		//find neighbors
+		if (isValidMove(currentX + 1, currentY) && solveMaze(currentX + 1, currentY, endX, endY))
+			return true;
+		if (isValidMove(currentX - 1, currentY) && solveMaze(currentX - 1, currentY, endX, endY))
+			return true;
+		if (isValidMove(currentX, currentY + 1) && solveMaze(currentX, currentY + 1, endX, endY))
+			return true;
+		if (isValidMove(currentX, currentY - 1) && solveMaze(currentX, currentY - 1, endX, endY))
+			return true;
+
+		//if no valid positions, backtrack
+		maze[currentY][currentX].setVisited(false);
+		return false;
 	}
 
 	//display function that does what it says
 	void display() {
 		for (uint8_t i = 0; i < size; i++) {
 			for (uint8_t j = 0; j < size; j++) {
-				std::cout << (maze[i][j].isWalkable() ? " " : "#");
+				if (maze[i][j].isVisited()) { std::cout << "."; }
+				else
+					std::cout << (maze[i][j].isWalkable() ? " " : "#");
 			}
 			std::cout << std::endl;
 		}

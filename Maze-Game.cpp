@@ -6,9 +6,19 @@
 
 #include "Maze.h"
 
-int main(void) {
-	Maze m = Maze(21);  // Use an odd number for better maze generation
-	m.generateMaze(1, 1);  // Start at (1, 1)
-	m.display();
+int main() {
+	Maze m(21);  // Create a 21x21 maze
+	srand(time(0));  // Seed for randomness
+	m.generateMaze(1, 1);  // Generate maze starting from (1, 1)
+
+	// Solve the maze from the top-left (1, 1) to the bottom-right (19, 19)
+	if (m.solveMaze(1, 1, 19, 19)) {
+		std::cout << "Maze Solved!" << std::endl;
+	}
+	else {
+		std::cout << "No solution found." << std::endl;
+	}
+
+	m.display();  // Display the maze with the solution path
 	return 0;
 }
