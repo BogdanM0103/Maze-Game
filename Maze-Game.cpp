@@ -48,6 +48,16 @@ public:
 		}
 	}
 
+	//get unvisited neighbors of a cell
+	std::vector<Cell*> getUnvisitedNeighbors(uint8_t x, uint8_t y) {
+		std::vector<Cell*> neighbors;
+		if (x > 1 && !maze[y][x - 2].isVisited()) neighbors.push_back(&maze[y][x - 2]);  // Left
+		if (x < size - 2 && !maze[y][x + 2].isVisited()) neighbors.push_back(&maze[y][x + 2]);  // Right
+		if (y > 1 && !maze[y - 2][x].isVisited()) neighbors.push_back(&maze[y - 2][x]);  // Up
+		if (y < size - 2 && !maze[y + 2][x].isVisited()) neighbors.push_back(&maze[y + 2][x]);  // Down
+		return neighbors;
+	}
+
 	void generateMaze(uint8_t startX, uint8_t startY) {
 		//initialize all cells first as walls
 		for (uint8_t i = 0; i < size; i++) {
