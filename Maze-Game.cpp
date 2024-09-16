@@ -58,6 +58,20 @@ public:
 		return neighbors;
 	}
 
+	//remove wall between 2 cells
+	void removeWall(Cell& current, Cell& neighbor) {
+		uint8_t x1 = current.getX();
+		uint8_t x2 = neighbor.getX();
+		uint8_t y1 = current.getY();
+		uint8_t y2 = neighbor.getY();
+
+		//coords of the wall
+		uint8_t wallX = (x1 + x2) / 2;
+		uint8_t wallY = (y1 + y2) / 2;
+
+		maze[wallX][wallY].setWalkable(true);
+	}
+
 	void generateMaze(uint8_t startX, uint8_t startY) {
 		//initialize all cells first as walls
 		for (uint8_t i = 0; i < size; i++) {
@@ -75,7 +89,21 @@ public:
 		start.setVisited(true);
 		stack.push(&start);
 
+		//maze generation loop
+		while (!stack.empty()) {
+			//get current cell
+			Cell* current = stack.top();
+			//get current cell's neighbors
+			std::vector<Cell*> neighbors = getUnvisitedNeighbors(current->getX(), current->getY());
 
+			//if there are uninvisited neighbors
+			if (!neighbors.empty()) {
+
+			}
+			else {//if there are no unvisited neighbors, go back
+				stack.pop();
+			}
+		}
 	}
 
 	//display function that does what it says
