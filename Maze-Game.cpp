@@ -70,7 +70,7 @@ public:
 		uint8_t wallX = (x1 + x2) / 2;
 		uint8_t wallY = (y1 + y2) / 2;
 
-		maze[wallX][wallY].setWalkable(true);
+		maze[wallY][wallX].setWalkable(true); // Corrected the order to [y][x]
 	}
 
 	void generateMaze(uint8_t startX, uint8_t startY) {
@@ -130,8 +130,8 @@ public:
 };
 
 int main(void) {
-	Maze m = Maze(10);
-	m.generateMaze(3, 2);
+	Maze m = Maze(21);  // Use an odd number for better maze generation
+	m.generateMaze(1, 1);  // Start at (1, 1)
 	m.display();
 	return 0;
 }
