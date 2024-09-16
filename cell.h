@@ -27,7 +27,6 @@ public:
 
 	//setter for isVisited flag
 	void setVisited(bool visit) { visited = visit; }
-
 };
 
 #endif

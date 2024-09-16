@@ -55,6 +55,9 @@ public:
 			}
 		}
 
+		//this makes the maze random each time you run the program
+		srand(time(0));
+
 		//stack for holding cells
 		std::stack<Cell*> stack;
 
@@ -102,5 +105,4 @@ public:
 	//getter for the size of the maze
 	uint8_t getSize() const { return size; }
 };
-
 #endif
