@@ -23,7 +23,7 @@ public:
 	bool isVisited() const { return visited; }
 
 	//function to check if the cell is walkable(a.k.a not a wall)
-	bool isWalkable() const { return isWalkable; }
+	bool isWalkable() const { return walkable; }
 
 	//setter for isWalkable flag
 	void setWalkable(bool walk) { walkable = walk; }
@@ -130,9 +130,8 @@ public:
 };
 
 int main(void) {
-	Cell c = Cell(1, 1); // Initialize the Cell object
-	std::cout << (int)c.getX() << " " << (int)c.getY();
-	Maze m = Maze(9);
-	std::cout << (int)m.getSize();
+	Maze m = Maze(10);
+	m.generateMaze(2, 2);
+	m.display();
 	return 0;
 }
