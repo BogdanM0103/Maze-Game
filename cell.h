@@ -1,6 +1,8 @@
 #ifndef CELL_H
 #define CELL_H
+
 #include <cstdint>
+
 class Cell {
 private:
 	uint8_t xCoord; //cordinate x of the cell using 1 byte
